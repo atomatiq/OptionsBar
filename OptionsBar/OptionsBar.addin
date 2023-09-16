@@ -1,0 +1,10 @@
+﻿<RevitAddIns>
+    <AddIn Type="Application">
+        <Name>OptionsBar</Name>
+        <Assembly>OptionsBar/OptionsBar.dll</Assembly>
+        <AddInId>A11B0727-5CC9-4E06-9CCA-0C1D51576001</AddInId>
+        <FullClassName>OptionsBar.Application</FullClassName>
+        <VendorId>Atomatiq</VendorId>
+        <VendorDescription>Manufacturing Software Development</VendorDescription>
+    </AddIn>
+</RevitAddIns>
