@@ -260,3 +260,4 @@ public override void Execute()
 На этом возможности OptionsBar не заканчиваются, вы можете придумать собственные варианты его использования и сделать удобство пользования Revit еще лучше.
 
 Исходный код проекта вы можете найти на GitHub: https://github.com/Nice3point/OptionsBar
+Скачать установщик можно здесь: https://github.com/Nice3point/OptionsBar/releases
