@@ -9,7 +9,8 @@
     mc:Ignorable="d"
     Background="#FFE5F0D7"
     Orientation="Horizontal"
-    Height="26">
+    Height="26"
+    d:DesignWidth="430">
     <TextBlock
         Margin="10 0 0 0"
         Text="Wall options"
