@@ -301,7 +301,7 @@ Want something unusual? A marquee can add excitement to your mundane modeling ro
 ## Conclusion
 
 OptionsBar is a powerful tool in Revit that allows you to optimize your workflow and make it more efficient. 
-Don't limit yourself to the described use cases—experiment, create your unique solutions, and make working in Revit even more productive.
+Don't limit yourself to the described use cases — experiment, create your unique solutions, and make working in Revit even more productive.
 
 Project source code: [GitHub](https://github.com/atomatiq/OptionsBar)
 
