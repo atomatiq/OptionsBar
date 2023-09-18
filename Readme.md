@@ -5,9 +5,9 @@ One of the tools that contributes to this efficiency is the OptionsBar, but not 
 
 # Introduction to OptionsBar
 
-[OptionsBar](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-28BDE98C-E8A9-4C74-8ABC-9DABD13163D9) is a convenient toolbar in Revit that has tremendous potential. 
-It provides capabilities ranging from adding your own tools to the toolbar to displaying information about the operation of your own add-ins. 
-However, Revit API documentation does not provide enough information on how to use OptionsBar to its full extent.
+[OptionsBar](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-28BDE98C-E8A9-4C74-8ABC-9DABD13163D9) is a convenient toolbar within Revit with tremendous potential. 
+It offers capabilities that span from adding your own tools on the toolbar to displaying information about the operation of your own add-ins. 
+However, the Revit API documentation doesn't offer sufficient information on fully harnessing the potential of OptionsBar.
 
 ![](https://help.autodesk.com/cloudhelp/2024/ENU/Revit-GetStarted/images/GUID-CCF99547-F6D8-4A0F-908C-49BA85BF3C49.png)
 
