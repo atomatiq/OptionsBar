@@ -1,35 +1,35 @@
-# OptionsBar: Улучшение пользовательского опыта в Revit
+# OptionsBar: Enhancing the User Experience in Revit
 
-[Revit](https://www.autodesk.com/products/revit/overview) - это мощное инструментальное средство для проектирования и моделирования зданий, и, безусловно, высокая эффективность работы с этим программным обеспечением является ключевым аспектом для успешных проектов. 
-Одним из инструментов, способствующих этой эффективности, является OptionsBar, но мало кто знает о его возможностях и том как его настроить.
+[Revit](https://www.autodesk.com/products/revit/overview) is a powerful tool for building design and modeling, and undoubtedly, high efficiency in working with this software is a key aspect for successful projects. 
+One of the tools that contributes to this efficiency is the OptionsBar, but not many people are aware of its capabilities and how to configure it.
 
-# Введение в OptionsBar
+# Introduction to OptionsBar
 
-[OptionsBar](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-28BDE98C-E8A9-4C74-8ABC-9DABD13163D9) - это удобная панель инструментов в Revit, которая обладает огромным потенциалом. 
-Она предоставляет возможности, начиная от добавления собственных инструментов на ленту инструментов и заканчивая отображением информации о работе ваших собственных надстроек. 
-Однако, документация по Revit API не предоставляет достаточно информации о том, как использовать OptionsBar в полной мере.
+[OptionsBar](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-28BDE98C-E8A9-4C74-8ABC-9DABD13163D9) is a convenient toolbar in Revit that has tremendous potential. 
+It provides capabilities ranging from adding your own tools to the toolbar to displaying information about the operation of your own add-ins. 
+However, Revit API documentation does not provide enough information on how to use OptionsBar to its full extent.
 
 ![](https://help.autodesk.com/cloudhelp/2024/ENU/Revit-GetStarted/images/GUID-CCF99547-F6D8-4A0F-908C-49BA85BF3C49.png)
 
-# Начало работы
+# Getting Started
 
-Прежде чем мы начнем настраивать OptionsBar, нам потребуется добавить необходимые зависимости и создать контроллер для управления этой панелью.
+Before we begin customizing the OptionsBar, we'll need to add the necessary dependencies and create a controller to manage this panel.
 
-Использованные технологии:
+Technologies Used:
 
-- Язык - C#
-- UI framework - WPF
+- Language: C#
+- UI framework: WPF
 
-# Настройка OptionsBar. Шаг за Шагом
+# Configuring OptionsBar. Step by Step
 
-Давайте подробно рассмотрим процесс настройки OptionsBar и как это можно сделать максимально эффективным образом.
+Let's delve into the process of configuring OptionsBar and how to do it most efficiently.
 
-## Шаг 1: Добавление Зависимостей
+## Step 1: Adding Dependencies
 
-Понимание того, что пользовательский интерфейс в Revit реализован с использованием технологии WPF (Windows Presentation Foundation), помогает нам получить доступ ко всем элементам интерфейса.
-Для этого нам понадобится библиотека `AdWindows.dll`, которая поставляется с Revit. 
+Understanding that the user interface in Revit is implemented using WPF (Windows Presentation Foundation) technology helps us access all the interface elements. 
+For this, we'll need the `AdWindows.dll` library, which comes with Revit.
 
-Для компиляции проекта на любом устройстве добавим NuGet пакет в .csproj файл проекта следующим образом:
+To compile the project on any device, let's add a NuGet package to the `.csproj` project file as follows:
 
 ```xml
 <ItemGroup>
@@ -37,20 +37,21 @@
 </ItemGroup>
 ```
 
-## Шаг 2: Создание Контроллера
+## Step 2: Creating a Controller
 
-Для того чтобы управлять OptionsBar, нам потребуется контроллер, который будет обрабатывать его отображение и скрытие. Для доступа к ленте инструментов Revit и OptionsBar мы воспользуемся статическим свойством `ComponentManager.Ribbon` из библиотеки `AdWindows.dll`, которую мы подключили на предыдущем шаге.
+To control OptionsBar, we'll need a controller that handles its display and hiding. 
+To access the Revit ribbon and OptionsBar, we'll use the static property `ComponentManager.Ribbon` from the `AdWindows.dll` library that we included in the previous step.
 
-Процесс настройки OptionsBar можно разбить на следующие этапы:
+The process of configuring OptionsBar can be divided into the following stages:
 
-1. Поиск встроенной панели
-2. Создание пользовательской панели
-3. Скрытие/отображение встроенной и пользовательской панели
+1. Finding the built-in panel.
+2. Creating a custom panel.
+3. Hiding/showing the built-in and custom panels.
 
-Важно заметить, что мы не удаляем или не заменяем встроенную панель OptionsBar, чтобы не нарушить функциональность Revit. 
-Вместо этого мы просто скрываем ее и отображаем собственную панель, когда это необходимо.
+It's important to note that we don't remove or replace the built-in OptionsBar panel to avoid disrupting Revit's functionality. 
+Instead, we simply hide it and display our custom panel when necessary.
 
-Давайте рассмотрим пример кода, который позволяет отображать и скрывать пользовательскую панель:
+Let's take a look at a code example that allows displaying and hiding the custom panel:
 
 ```C#
 public static class RibbonController
@@ -118,16 +119,17 @@ public static class RibbonController
 }
 ```
 
-В примере использованы только публичные свойства RevitApi и системные методы WPF.
-Взаимодействие с лентой реализовано  методами `ShowOptionsBar()` и `HideOptionsBar()`. Метод `ShowOptionsBar()` принимает любой FrameworkElement, который и будет отображаться для пользователя.
+In the example, only public properties of the Revit API and system methods of WPF are used. 
+Interaction with the ribbon is implemented with the `ShowOptionsBar()` and `HideOptionsBar()` methods. 
+The `ShowOptionsBar()` method takes any FrameworkElement, which will be displayed to the user.
 
-## Шаг 3: Создание пользовательского интерфейса
+## Step 3: Creating a User Interface
 
-Чтобы создать пользовательский интерфейс для OptionsBar, мы будем использовать паттерн MVVM (Model-View-ViewModel) и фреймворк WPF (Windows Presentation Foundation).
+To create a user interface for OptionsBar, we'll use the MVVM (Model-View-ViewModel) pattern and the WPF (Windows Presentation Foundation) framework.
 
-Для примера, рассмотрим простую разметку панели с текстовым полем и выпадающим списком:
+For example, let's consider a simple panel layout with a text field and a dropdown list:
 
-![изображение](https://github.com/Nice3point/OptionsBar/assets/20504884/3932ef5f-82e0-4b59-bc61-b95aef6199c8)
+![](https://github.com/Nice3point/OptionsBar/assets/20504884/3932ef5f-82e0-4b59-bc61-b95aef6199c8)
 
 ```xml
 <StackPanel
@@ -174,7 +176,7 @@ public static class RibbonController
 </StackPanel>
 ```
 
-Пример кода для ViewModel:
+Sample code for the ViewModel:
 
 ```C#
 public partial class OptionsViewModel : ObservableObject
@@ -184,34 +186,35 @@ public partial class OptionsViewModel : ObservableObject
 }
 ```
 
-Верстка ничем не отличается от привычных WPF приложений, однако корневым элементов будет не Window, а любой контейнер по типу StackPanel, Grid и т.д., поскольку OptionBar является встраиваемым в Revit UI.
+The layout is no different from regular WPF applications, but the root element will be a container like StackPanel, Grid, and so on, since OptionBar is embedded in the Revit UI.
 
-## Сценарии использования
+## Use Cases
 
-OptionsBar предоставляет бесконечные возможности для оптимизации рабочего процесса в Revit. Рассмотрим некоторые из наиболее популярных сценариев использования:
+OptionsBar provides endless possibilities for streamlining the workflow in Revit. 
+Let's explore some of the most popular use cases:
 
-### Сценарий 1: Утилиты
+### Use Case 1: Utilities
 
-OptionsBar может быть использован для добавления пользовательских инструментов, которые могут быть удобно расположены на ленте инструментов. 
-Это особенно полезно, когда создание отдельного окна излишне.
+OptionsBar can be used to add custom tools that can be conveniently placed on the toolbar.
+This is especially useful when creating a separate window is unnecessary.
 
 ![изображение](https://github.com/Nice3point/OptionsBar/assets/20504884/10cafa43-8255-49ba-b764-7c5c0be2340a)
 
-### Сценарий 2: Опции при выборе элемента в модели
+### Use Case 2: Element Selection Options
 
-Этот сценарий охватывает ситуации, когда пользователь работает с моделью в Revit и должен выбрать определенный элемент для последующего редактирования. 
-Для более удобной и интуитивно понятной настройки параметров вы можете использовать OptionsBar, вместо создания дополнительных окон.
+This scenario covers situations where a user is working with a model in Revit and needs to select a specific element for further editing. 
+For more convenient and intuitive parameter customization, you can use OptionsBar instead of creating additional windows.
 
-Пример: Допустим, у вас есть плагин, который позволяет пользователю настраивать смещение сверху стены. Рассмотрим как расположить все инструменты на панели OptionsBar.
+Example: Suppose you have a plugin that allows users to adjust the top offset of a wall. Let's see how to arrange all the tools on the OptionsBar panel.
 
 ![изображение](https://github.com/Nice3point/OptionsBar/assets/20504884/65a508ce-2f9c-414d-80b3-f996b5e679d6)
 
-- Шаг 1: Добавление OptionsBar на ленту Revit
+- Step 1: Adding OptionsBar to the Revit Ribbon
 
-    Первым шагом в этом сценарии является настройка OptionsBar для отображения на ленте инструментов Revit.
-    Вы можете создать собственное представление (View) для OptionsBar, с параметрами, которые пользователь может настраивать.
-    
-    Пример кода, с использованием паттерна MVVM:
+  The first step in this scenario is to set up OptionsBar for display on the Revit ribbon. 
+  You can create your own view for OptionsBar with parameters that the user can customize.
+  
+  Example code using the MVVM pattern:
     
     ```C#
     private OptionsViewModel SetupOptionsBar()
@@ -228,11 +231,12 @@ OptionsBar может быть использован для добавлени�
     }
     ```
 
-- Шаг 2: Выбор элемента
+- Step 2: Selecting an Element
 
-  После настройки OptionsBar пользователь выбирает элемент в модели, с которым он хочет работать. Это может быть, например, выбор стены для настройки смещения.
+  After configuring OptionsBar, the user selects an element in the model with which they want to work. 
+  This could be, for example, selecting a wall to adjust the offset.
   
-  Пример кода для выбора элемента:
+  Example code for element selection:
   
   ```C#
   private Wall PickWall()
@@ -243,12 +247,12 @@ OptionsBar может быть использован для добавлени�
   }
   ```
 
-- Шаг 3: Изменение параметров элемента
+- Step 3: Adjusting Element Parameters
 
-  Теперь, когда пользователь выбрал элемент и OptionsBar настроен, можно приступить к настройке параметров элемента. 
-  Значение смещение мы возьмем из ViewModel, которое ввел пользователь и зададим его параметру стены.
-  
-  Пример кода для изменения параметров элемента:
+  Now that the user has selected an element and OptionsBar is configured, you can start adjusting the element's parameters. 
+  We'll take the offset value from the ViewModel entered by the user and set it to the wall parameter.
+
+  Example code for adjusting element parameters:
   
   ```C#
   private void ModifyWall(Wall wall, OptionsViewModel options)
@@ -260,10 +264,11 @@ OptionsBar может быть использован для добавлени�
   }
   ```
 
-- Шаг 4: Восстановление ленты Revit
+- Step 4: Restoring the Revit Ribbon
 
-  После завершения настройки параметров элемента, важно скрыть OptionsBar и восстановить нормальное состояние ленты инструментов Revit. Для этого добавим `finally` блок после вызова всех методов.
-  
+  After completing the element parameter configuration, it's important to hide OptionsBar and restore the normal state of the Revit ribbon.
+  To do this, add a `finally` block after calling all the methods.
+
   ```C#
   public override void Execute()
   {
@@ -283,20 +288,21 @@ OptionsBar может быть использован для добавлени�
       }
   }
   ```
-  
-  Этот сценарий позволяет пользователям быстро и удобно настраивать параметры элементов модели без необходимости открывать дополнительные окна или выполнять лишние действия. OptionsBar делает процесс редактирования элементов более интуитивным и эффективным.
 
-### Сценарий 3: Бегущая строка
+  This scenario allows users to quickly and conveniently customize the parameters of model elements without the need to open additional windows or perform extra actions. 
+  OptionsBar makes the process of editing elements more intuitive and efficient.
 
-Хотите чего-то необычного? Бегущая строка разбавит ваши серые будни моделирования
+### Use Case 3: Marquee
+
+Want something unusual? A marquee can add excitement to your mundane modeling routine.
 
 ![](https://github.com/Nice3point/OptionsBar/assets/20504884/9427569b-1cce-41c8-a1f5-e88bea4c8683)
 
-## Заключение
+## Conclusion
 
-OptionsBar - это мощный инструмент в Revit, который позволяет оптимизировать рабочий процесс и сделать его более эффективным. 
-Не ограничивайтесь только описанными сценариями использования - экспериментируйте, создавайте свои уникальные решения и сделайте работу в Revit еще более продуктивной.
+OptionsBar is a powerful tool in Revit that allows you to optimize your workflow and make it more efficient. 
+Don't limit yourself to the described use cases—experiment, create your unique solutions, and make working in Revit even more productive.
 
-Исходный код проекта: https://github.com/Nice3point/OptionsBar
+Project source code: [GitHub](https://github.com/atomatiq/OptionsBar)
 
-Также доступны установщики с примерами для Revit: https://github.com/Nice3point/OptionsBar/releases
+Installers with examples for Revit are also available: [Releases](https://github.com/atomatiq/OptionsBar/releases)
